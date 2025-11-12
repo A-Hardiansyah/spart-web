@@ -1,1 +1,185 @@
-404: Not Found
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIMARK</title>
+  <link rel="icon" type="image/png" href="VRM.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET DAN DASAR ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: url('bgweb.png') center center / cover no-repeat;
+      background-attachment: scroll; /* <— ini penting untuk HP */
+      padding: 20px;
+    }
+    
+    /* Box utama transparan */
+    .main-box {
+      background-color: rgba(255, 255, 255, 0.12);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow:
+        0 8px 20px rgba(255, 0, 0, 0.35),
+        0 0 35px rgba(106, 13, 173, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      width: 100%;
+      max-width: 500px; /* biar proporsional di semua layar */
+      backdrop-filter: blur(4px);
+    }
+    
+    /* ===== JUDUL ===== */
+    h1.logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #6a0dad;
+      text-shadow: 0 0 15px rgba(192,132,252,0.8);
+      margin-bottom: 8px; /* lebih rapat ke bawah */
+      letter-spacing: 1px;
+    }
+
+    /* ===== SUBJUDUL ===== */
+    h2.sublogo {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #6a0dad;
+      text-shadow: 0 0 15px rgba(192,132,252,0.8);
+      margin-bottom: 18px; /* jarak ideal ke kutipan */
+    }
+
+    /* ===== KUTIPAN ===== */
+    .quote {
+      font-size: 1rem;
+      font-style: italic;
+      color: #e5e7eb;
+      line-height: 1.6;
+      margin-bottom: 5px;
+    }
+
+    .author {
+      font-size: 0.95rem;
+      color: #cfcfcf;
+      opacity: 0.8;
+      margin-bottom: 25px;
+    }
+    
+    /* Tombol menu */
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 25px;
+    }
+    
+    .btn {
+      padding: 15px 30px;
+      background-color: #6a0dad;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 0 6px #4b0082;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #7e22ce;
+      transform: scale(1.05);
+    }
+    
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px #2b4afc;
+    }
+    
+    /* Responsif tablet */
+    @media (max-width: 768px) {
+      .main-box {
+        padding: 30px;
+        max-width: 90%;
+      }
+      h1.logo {
+        font-size: 2rem;
+      }
+      h2.sublogo {
+        font-size: 1rem;
+      }
+      .quote {
+        font-size: 0.95rem;
+      }
+      .btn {
+        font-size: 1rem;
+        padding: 12px 24px;
+      }
+    }
+    
+    /* Responsif HP kecil */
+    @media (max-width: 480px) {
+      .main-box {
+        padding: 25px 20px;
+        max-width: 95%;
+      }
+      h1.logo {
+        font-size: 1.7rem;
+      }
+      h2.sublogo {
+        font-size: 0.95rem;
+      }
+      .quote {
+        font-size: 0.9rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-box">
+    <h1 class="logo">VERIMARK</h1>
+    <h2 class="sublogo">DIMARCO-GOGOMALL</h2>
+    <p class="quote">"Usaha sering lebih penting daripada hasilnya"</p>
+    <p class="author">~ Arthur Ashe</p>
+
+    <div class="menu">
+      <a href="kategori.html" class="btn">PRODUK</a>
+      <a href="upload.html" class="btn">UPLOAD FORM SP</a>
+    </div>
+  </div>
+
+  <script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
