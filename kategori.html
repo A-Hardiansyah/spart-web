@@ -181,8 +181,8 @@ h1, h2, h3, h4, h5, h6 {
     /* === Keranjang === */
     #cart-icon {
         position: fixed;
-        top: 100px;
-        right: 180px;
+        top: 150px;
+        right: 1180px;
         background: rgba(255, 255, 255, 0.9);
         padding: 10px 15px;
         border-radius: 10px;
@@ -190,10 +190,6 @@ h1, h2, h3, h4, h5, h6 {
         cursor: pointer;
         z-index: 1000;
         transition: all 0.3s ease; /* biar halus */
-    }
-    #cart-icon.active {
-        top: 20px;
-        right: 30px;
     }
     #cart-count {
         font-family: 'Montserrat', sans-serif;
@@ -2909,9 +2905,6 @@ h1, h2, h3, h4, h5, h6 {
       const imgRect = productImg.getBoundingClientRect();
       const cartRect = cartIcon.getBoundingClientRect();
         
-      // *** Tambahkan class active (ubah posisi cart jadi ke pojok) ***
-      cartIcon.classList.add("active");
-    
       // gaya awal clone
       imgClone.style.position = "fixed";
       imgClone.style.left = imgRect.left + "px";
