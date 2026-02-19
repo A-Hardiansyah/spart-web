@@ -232,7 +232,8 @@ h1, h2, h3, h4, h5, h6 {
         color: #ff8080;
         font-size: 16px;
     }
-    #checkout-btn:hover { background: #7d27c1; color: white; }
+    #checkout-btn:hover { background: #2793c1; color: white; }
+    #simpan-btn:hover { background: #2793c1; color: white; }
 
     .btn-add {
       font-family: 'Montserrat', sans-serif;
@@ -275,8 +276,7 @@ h1, h2, h3, h4, h5, h6 {
     #print-btn {
       background-color: #444;
       color: white;
-      margin-top: 10px;
-      font-size: 0.9rem;
+
     }
     #print-btn:hover {
       background-color: #666;
@@ -302,7 +302,8 @@ h1, h2, h3, h4, h5, h6 {
       <input type="text" id="Keterangan" placeholder="Masukkan keterangan..." style="width:100%; border:none; border-radius:4px; padding:5px;">
     </div>
     <div id="cart-items"></div>
-    <button id="checkout-btn" class="btn">Checkout via WhatsApp</button>
+    <button id="simpan-btn" class="btn" onclick="simpanOrder()">Simpan</button>
+    <button id="checkout-btn" class="btn">Order via WhatsApp</button>
     <button id="print-btn" class="btn">🖨️ Print Data</button>
     <button id="logoutBtn" class="btn" style="background-color: #b22222; margin-top:10px;">🚪 Logout</button>
     </div>
@@ -2927,15 +2928,16 @@ h1, h2, h3, h4, h5, h6 {
       }, 900);
     }
 
-     document.getElementById("print-btn").addEventListener("click", function() {
+function printOrder() {
+
   const items = document.querySelectorAll("#cart-items .cart-item");
 
-  // ambil nama produk & nomor SN dari input (kita tambahkan di sidebar cart)
   const productName = document.getElementById("productName")?.value?.trim() || "-";
   const serialNumber = document.getElementById("serialNumber")?.value?.trim() || "-";
   const Keterangan = document.getElementById("Keterangan")?.value?.trim() || "-";
 
   let tableRows = "";
+
   items.forEach((item, index) => {
     const text = item.querySelector("span").textContent.trim();
     const parts = text.split(" - ");
@@ -2959,12 +2961,12 @@ h1, h2, h3, h4, h5, h6 {
     `;
   });
 
-  // tanggal dan jam otomatis
   const now = new Date();
-  const tanggal = now.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
-  const jam = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const tanggal = now.toLocaleDateString('id-ID');
+  const jam = now.toLocaleTimeString('id-ID');
 
-  const printWindow = window.open('', '', 'width=500,height=300');
+  const printWindow = window.open('', '', 'width=600,height=300');
+
   printWindow.document.write(`
     <html>
     <head>
@@ -3071,12 +3073,22 @@ h1, h2, h3, h4, h5, h6 {
           </div>
         </div>
       </div>
-      <script>window.print();<\/script>
+      <script>
+        window.onload = function(){
+          window.print();
+          window.onafterprint = function(){ window.close(); }
+        }
+      <\/script>
+
     </body>
     </html>
   `);
+
   printWindow.document.close();
-}); 
+}
+
+// tombol print manual
+document.getElementById("print-btn").addEventListener("click", printOrder);
 
         // Cek apakah sudah login
   if (localStorage.getItem("isLoggedIn") !== "true") {
@@ -3095,6 +3107,60 @@ h1, h2, h3, h4, h5, h6 {
     alert("Kamu sudah logout 👋");
     window.location.href = "login.html";
   });
+
+async function simpanOrder() {
+
+    const cart = JSON.parse(localStorage.getItem("cartData")) || [];
+
+    if (cart.length === 0) {
+        alert("Keranjang kosong!");
+        return;
+    }
+
+    const nama = prompt("Masukkan nama pembeli:");
+    if (!nama) return;
+
+    const url = "https://script.google.com/macros/s/AKfycbwm0KbG6SGAmIBThV_zxKUWxQ2r6U3tj-JX5ZZjbBLD9BltZG5S5ZqLkAdN0dh_m0VTPQ/exec";
+
+    try {
+
+        for (const item of cart) {
+
+            await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "text/plain"
+                },
+                body: JSON.stringify({
+                    nama: nama,
+                    produk: item.name,
+                    sn: item.sn || "",
+                    keterangan: item.keterangan || "",
+                    qty: item.qty,
+                    total: "-",
+                    status: "Baru"
+                })
+            });
+
+        }
+
+        alert("Order berhasil disimpan!");
+
+        // PRINT LANGSUNG
+        printOrder();
+
+        // Reset setelah print
+        setTimeout(() => {
+            localStorage.removeItem("cartData");
+            location.reload();
+        }, 1500);
+
+    } catch (error) {
+    alert("Error detail: " + error);
+    console.log(error);
+}
+}
+
         
     </script>
     </div>
