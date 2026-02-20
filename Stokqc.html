@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STOK SPAREPART</title>
+
+<link rel="icon" type="image/png" href="VRM.png">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+    font-family:'Montserrat',sans-serif;
+    background:url('bgweb.png') no-repeat center center fixed;
+    background-size:cover;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* ===== MAIN BOX ===== */
+.main-box{
+    background:rgba(255,255,255,0.08);
+    padding:25px 35px;
+    border-radius:15px;
+    max-width:1100px;
+    margin:auto;
+
+    box-shadow:
+        0 8px 20px rgba(255,0,0,0.35),
+        0 0 35px rgba(106,13,173,0.6);
+}
+
+/* ===== TITLE ===== */
+h1{
+    font-weight:700;
+}
+
+/* ===== SEARCH ===== */
+#searchBox{
+    padding:10px;
+    width:90%;
+    max-width:300px;
+    border-radius:6px;
+    border:none;
+    margin-bottom:20px;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.9);
+    color:#222;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+thead{
+    background:#6a0dad;
+    color:white;
+}
+
+th,td{
+    padding:12px;
+    text-align:left;
+}
+
+tbody tr{
+    transition:0.25s;
+}
+
+tbody tr:nth-child(even){
+    background:#f5f0ff;
+}
+
+tbody tr:hover{
+    background:#e6d9ff;
+    transform:scale(1.01);
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#6a0dad;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    box-shadow:0 6px #4b0082;
+}
+
+.btn:hover{
+    background:#7d27c1;
+    transform:scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    .main-box{
+        padding:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="main-box">
+
+<h1>📦 DATA STOK SPAREPART</h1>
+
+<input type="text" id="searchBox" placeholder="Cari sparepart...">
+
+<div class="table-wrapper">
+
+<table id="stokTable">
+<thead>
+<tr>
+<th>NO</th>
+<th>KODE SPAREPART</th>
+<th>NAMA SPAREPART</th>
+<th>QTY</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>ZCTD.ABT</td>
+<td>AIRBAG TRAY CERVICAL</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>ZCTD.APUMP</td>
+<td>AIRPUMP CERVICAL</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>ZCTD.BOLT</td>
+<td>BOLT CERVICAL</td>
+<td>32</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>ZCTD.CC8P</td>
+<td>CONTROL CABLE 8 PIN</td>
+<td>5</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<a href="index.html" class="btn">⬅ Kembali</a>
+
+</div>
+
+<script>
+
+/* ===== SEARCH TABLE ===== */
+document.getElementById("searchBox").addEventListener("input", function(){
+
+let filter = this.value.toLowerCase();
+let rows = document.querySelectorAll("#stokTable tbody tr");
+
+rows.forEach(row=>{
+    let text = row.textContent.toLowerCase();
+    row.style.display = text.includes(filter) ? "" : "none";
+});
+
+});
+
+</script>
+
+</body>
+</html>
