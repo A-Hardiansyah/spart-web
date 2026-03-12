@@ -149,9 +149,21 @@ tbody tr:hover{
 
 /* ===== DATA SPAREPART ===== */
 const spareparts = [
-{kode:"ZDRHP.LB", nama:"LITHIUM BATTERY DR HI PLUS", qty:9},
-{kode:"ZDRU.CIW", nama:"CABLE INTRANASAL WHITE", qty:20},
-{kode:"ZDRHP.R", nama:"RESISTANCE HI PLUS", qty:30},
+{kode:"ZKMN.HAKMN", nama:"HOUSING ASSY KITCHEN MASTER NUTRIMIX", qty:1, tgl:"45670", rpo:"RPV25-00001"},
+{kode:"ZCTD.RCB", nama:"REMOTE CIRCUIT BOARD CERVICAL", qty:50, tgl:"45670", rpo:"RPV25-00002"},
+{kode:"ZDRPN.CIWG2", nama:"CABLE INTRANASAL WHITE G2", qty:200, tgl:"45671", rpo:"RPV25-00003"},
+{kode:"ZALU.A", nama:"ADAPTOR FOR ACULASER", qty:50, tgl:"45693", rpo:"RPV25-00008"},
+{kode:"ZALU.USBC", nama:"USB CABLE C TYPE FOR ACULASER", qty:50, tgl:"45693", rpo:"RPV25-00008"},
+{kode:"ZALU.CIC", nama:"CHARGING IC FOR HJG65D", qty:500, tgl:"45693", rpo:"RPV25-00008"},
+{kode:"ZALU.TCS", nama:"TYPE C SOCKET FOR ACULASER", qty:400, tgl:"45693", rpo:"RPV25-00008"},
+{kode:"ZALU.SIC", nama:"SOT IC FOR ACULASER", qty:150, tgl:"45693", rpo:"RPV25-00008"},
+{kode:"ZBLC.MOTOR", nama:"DINAMO MOTOR BLACKHOLE NEW", qty:1, tgl:"45693", rpo:"RPV25-00009"},
+{kode:"ZALD.TLDSG1", nama:"TRANSPARENT LENS OF DISPLAY SCREEN FOR ULTIMATE G1", qty:39, tgl:"45698", rpo:"RPV25-00010"},
+{kode:"ZALD.TLDSG2", nama:"TRANSPARENT LENS OF DISPLAY SCREEN FOR ULTIMATE G2", qty:42, tgl:"45698", rpo:"RPV25-00010"},
+{kode:"ZBLC.MOTOR", nama:"DINAMO MOTOR BLACKHOLE NEW", qty:1, tgl:"45699", rpo:"RPV25-00011"},
+{kode:"ZZAF.CPZ", nama:"CONTROL PANEL ZERO FAT AIRFRAYER", qty:1, tgl:"45712", rpo:"RPV25-00012"},
+{kode:"ZDRU.TL4H", nama:"TRANSPARENT LENS 4 HOLES", qty:70, tgl:"45715", rpo:"RPV25-00013"},
+{kode:"ZDRU.TL2H", nama:"TRANSPARENT LENS 2 HOLES", qty:70, tgl:"45715", rpo:"RPV25-00013"},
 ];
 
 
@@ -166,6 +178,8 @@ spareparts.forEach((sp, index)=>{
      <td>${sp.kode}</td>
      <td>${sp.nama}</td>
      <td>${sp.qty}</td>
+     <td>${sp.tgl}</td>
+     <td>${sp.rpo}</td>
    </tr>
  `;
 
