@@ -103,15 +103,43 @@
     </style>
 </head>
 <body>
-    <h1 class="logo">Upload File Balikan Spart</h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <label>Pilih File:</label>
-        <input type="file" name="file" accept=".jpg, .jpeg, .pdf, .docx" required>
-        <button type="submit" name="submit">Upload</button>
-    </form>
-    <a href="index.html" class="btn">Kembali</a>
-
-    <script>
+        <input type="file" id="fileInput">
+        <button onclick="uploadFile()">Upload</button>
+        
+        <script>
+        
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwB3Z1NIqjLDXLA2oU0z1iNWmMcjTQWmhDcn9P1cbRrduRf04Pi8GmXZXuOeJPuEwCpYA/exec";
+             
+        function uploadFile() {
+        
+          const file = document.getElementById("fileInput").files[0];
+        
+          if (!file) {
+            alert("Pilih file dulu!");
+            return;
+          }
+        
+          const reader = new FileReader();
+        
+          reader.onload = function() {
+        
+            const base64 = reader.result.split(",")[1];
+        
+            fetch(scriptURL, {
+              method: "POST",
+              body: new URLSearchParams({
+                filename: file.name,
+                type: file.type,
+                data: base64
+              })
+            })
+            .then(res => alert("File berhasil diupload ke Google Drive"))
+            .catch(err => alert("Upload gagal"));
+        
+          };
+        
+          reader.readAsDataURL(file);
+        }
   // Cek apakah sudah login
   if (localStorage.getItem("isLoggedIn") !== "true") {
     alert("Kamu harus login dulu sebelum mengakses halaman ini!");
