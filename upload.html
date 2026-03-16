@@ -104,9 +104,11 @@
 </head>
 <body>
     <h1 class="logo">Upload Form Permintaan</h1>
-        <label>Pilih File:</label>
-        <input type="file" name="file" accept=".jpg, .jpeg, .pdf, .docx" required>
-        <button type="submit" name="submit">Upload</button>
+    <form>
+    <label>Pilih File:</label>
+    <input type="file" id="fileInput" accept=".jpg,.jpeg,.pdf,.docx">
+    <button type="button" onclick="uploadFile()">Upload</button>
+    </form>
     <a href="index.html" class="btn">Kembali</a>
         
         <script>
